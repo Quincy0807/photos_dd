@@ -23,8 +23,7 @@ gulp.task('translate', () =>{
   const package_json = JSON.parse(fs.readFileSync('package.json'))
   const babel_opts = package_json.babel
   const [src,target] = [['controllers'], 'translate']
-
-  if(!fs.exists(target)){
+  if(!fs.existsSync(target)){
     fs.mkdirSync(target)
   }
 

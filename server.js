@@ -1,6 +1,6 @@
 import "babel-polyfill"
 import koa from "koa"
-import home_controller from "./translate/controllers"
+import home_controller from "./translate/controllers/home.js"
 
 const mongo = require('koa-mongo')
 const convert = require('koa-convert')
