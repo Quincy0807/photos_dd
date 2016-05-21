@@ -6,19 +6,43 @@ var _koa = require("koa");
 
 var _koa2 = _interopRequireDefault(_koa);
 
-var _koaRouter = require("koa-router");
+var _controllers = require("./transform/controllers");
 
-var _koaRouter2 = _interopRequireDefault(_koaRouter);
+var _controllers2 = _interopRequireDefault(_controllers);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { return step("next", value); }, function (err) { return step("throw", err); }); } } return step("next"); }); }; }
-
+console.log(_controllers2.default);
+console.log("==>>>");
 var mongo = require('koa-mongo');
 var convert = require('koa-convert');
-
+var router = require('koa-router')();
 var app = new _koa2.default();
-var router = (0, _koaRouter2.default)();
+
+var _iteratorNormalCompletion = true;
+var _didIteratorError = false;
+var _iteratorError = undefined;
+
+try {
+  for (var _iterator = _controllers2.default[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+    var item = _step.value;
+
+    router[item.method](item.url, item.handler);
+  }
+} catch (err) {
+  _didIteratorError = true;
+  _iteratorError = err;
+} finally {
+  try {
+    if (!_iteratorNormalCompletion && _iterator.return) {
+      _iterator.return();
+    }
+  } finally {
+    if (_didIteratorError) {
+      throw _iteratorError;
+    }
+  }
+}
 
 app.use(convert(mongo({
   host: '52.11.71.140',
@@ -28,26 +52,7 @@ app.use(convert(mongo({
   db: 'photos_dd'
 })));
 
-app.use(function () {
-  var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(ctx, next) {
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            //ctx.body = await ctx.mongo.db('photos_dd').collection('test').findOne()
-            ctx.body = 'test!!';
-
-          case 1:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee, undefined);
-  }));
-
-  return function (_x, _x2) {
-    return ref.apply(this, arguments);
-  };
-}());
+app.use(router.routes());
+app.use(router.allowedMethods());
 
 app.listen(3000);

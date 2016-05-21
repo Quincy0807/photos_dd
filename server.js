@@ -1,29 +1,25 @@
 import "babel-polyfill"
 import koa from "koa"
-import koaRouter from "koa-router"
+import home_controller from "./transform/controllers"
 
-
-var mongo = require('koa-mongo')
-var convert = require('koa-convert')
-
+const mongo = require('koa-mongo')
+const convert = require('koa-convert')
+const router = require('koa-router')()
 let app = new koa()
-let router = koaRouter()
 
+for(let item of home_controller){
+  router[item.method](item.url, item.handler)
+}
 
 app.use(convert(mongo({
   host: '52.11.71.140',
   port: 27017,
-  user:'quincy',
-  pass:'dd422',
-  db:'photos_dd',
+  user: 'quincy',
+  pass: 'dd422',
+  db: 'photos_dd',
 })))
 
-
-app.use(async (ctx, next) => {
-  //ctx.body = await ctx.mongo.db('photos_dd').collection('test').findOne()
-  ctx.body = 'test!!'
-})
-
-
+app.use(router.routes())
+app.use(router.allowedMethods())
 
 app.listen(3000)
