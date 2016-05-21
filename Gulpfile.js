@@ -29,7 +29,7 @@ gulp.task('translate', () =>{
     if(fs.exists(`${current_target}`)){
       fs.unlinkSync(`${current_target}`)
     }
-    return gulp.src(`${path}/*.js`).pipe(babel(babel_opts)).pipe(gulp.dest(`${target}/${path}.js`))
+    return gulp.src(`${path}/*.js`).pipe(babel(babel_opts)).pipe(gulp.dest(`${target}/${path}`))
 
   }
 

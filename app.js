@@ -12,8 +12,6 @@ var _controllers2 = _interopRequireDefault(_controllers);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-console.log(_controllers2.default);
-console.log("==>>>");
 var mongo = require('koa-mongo');
 var convert = require('koa-convert');
 var router = require('koa-router')();
