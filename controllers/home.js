@@ -1,7 +1,7 @@
 var home_controller = [{
   method: "get",
   url: "/test",
-  handler: async(ctx, next) => {
+  async handler(ctx, next) {
     ctx.body = 'ganbbate!!'
   }
 }]
