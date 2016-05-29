@@ -22,19 +22,15 @@ const fs = require('fs')
 gulp.task('translate', () =>{
   const package_json = JSON.parse(fs.readFileSync('package.json'))
   const babel_opts = package_json.babel
-  const [src,target] = [['controllers'], 'translate']
-  if(!fs.existsSync(target)){
-    fs.mkdirSync(target)
-  }
+  const src = ['controllers']
 
   for(let path of src){
-    const current_target = `${target}/${path}`
-    console.log(`translating ${current_target}`)
-    if(fs.exists(`${current_target}`)){
-      fs.unlinkSync(`${current_target}`)
+    if(!fs.existsSync(path)){
+      console.log(`clear ${path}`)
+      fs.mkdirSync(path)
     }
-    return gulp.src(`${path}/*.js`).pipe(babel(babel_opts)).pipe(gulp.dest(`${target}/${path}`))
-
+    console.log(`translating: build/${path}`)
+    return gulp.src(`build/${path}/*.js`).pipe(babel(babel_opts)).pipe(gulp.dest(`${path}`))
   }
 
 })

@@ -1,15 +1,31 @@
 import "babel-polyfill"
 import koa from "koa"
-import home_controller from "./translate/controllers/home.js"
+import home_controller from "./controllers/home.js"
 
 const mongo = require('koa-mongo')
 const convert = require('koa-convert')
 const router = require('koa-router')()
+const mount = require('koa-mount')
+const views = require('koa-views')
+const serve = require('koa-static')
+
 let app = new koa()
 
-for(let item of home_controller){
+for (let item of home_controller) {
   router[item.method](item.url, item.handler)
 }
+
+app.use(convert(serve('public/js')))
+app.use(convert(serve('js')))
+app.use(convert(serve('public/css')))
+
+app.use(views("./views", {
+  extension: 'jade',
+  map: {
+    html: 'underscore',
+    jade: 'jade'
+  }
+}))
 
 app.use(convert(mongo({
   host: '52.11.71.140',
