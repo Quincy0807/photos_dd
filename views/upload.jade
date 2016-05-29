@@ -4,6 +4,13 @@ html
 		title index
 		link(href='uikit.min.css', rel='stylesheet')
 	body
-		form(name='images', action='upload', method='post')
-			input(type='file')
+		form(name='images', action='upload', method='post', enctype='multipart/form-data')
+			input(type='file', name= 'file')
+			input.uk-hidden(type＝'text', name= 'date')
+			input.uk-hidden(type＝'text', name= 'longtitude')
+			input.uk-hidden(type＝'text', name= 'latitude')
+			input.uk-hidden(type＝'text', name= 'altitude')
 			input(type='submit', value='submit')
+
+		script
+			include ./../js/upload.js	

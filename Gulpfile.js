@@ -22,7 +22,7 @@ const fs = require('fs')
 gulp.task('translate', () =>{
   const package_json = JSON.parse(fs.readFileSync('package.json'))
   const babel_opts = package_json.babel
-  const src = ['controllers']
+  const src = ['controllers', 'js']
 
   for(let path of src){
     if(!fs.existsSync(path)){
@@ -30,7 +30,7 @@ gulp.task('translate', () =>{
       fs.mkdirSync(path)
     }
     console.log(`translating: build/${path}`)
-    return gulp.src(`build/${path}/*.js`).pipe(babel(babel_opts)).pipe(gulp.dest(`${path}`))
+    gulp.src(`build/${path}/*.js`).pipe(babel(babel_opts)).pipe(gulp.dest(`${path}`))
   }
 
 })
