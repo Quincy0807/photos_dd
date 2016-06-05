@@ -1,6 +1,9 @@
 const gulp = require('gulp');
 const babel = require('gulp-babel')
 const fs = require('fs')
+
+
+
 // var jshint = require('gulp-jshint');
 // var mocha = require('gulp-mocha');
 
@@ -32,8 +35,12 @@ gulp.task('translate', () =>{
     console.log(`translating: build/${path}`)
     gulp.src(`build/${path}/*.js`).pipe(babel(babel_opts)).pipe(gulp.dest(`${path}`))
   }
+  gulp.src('build/server.js').pipe(babel(babel_opts)).pipe(gulp.dest('.'))
 
 })
 
-gulp.task('default', ['translate']
-);
+gulp.task('default', ['translate']);
+
+gulp.task('watch', () => {
+  gulp.watch('build/**/*.js',['translate'])
+})

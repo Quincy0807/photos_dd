@@ -3,14 +3,42 @@ html
 	head
 		title index
 		link(href='uikit.min.css', rel='stylesheet')
+		link(href='form-file.min.css', rel='stylesheet')
+		link(href='datepicker.min.css', rel='stylesheet')
 	body
-		form(name='images', action='upload', method='post', enctype='multipart/form-data')
-			input(type='file', name= 'file')
-			input.uk-hidden(type＝'text', name= 'date')
-			input.uk-hidden(type＝'text', name= 'longtitude')
-			input.uk-hidden(type＝'text', name= 'latitude')
-			input.uk-hidden(type＝'text', name= 'altitude')
+		form#form.uk-form(name='images', action='upload', method='post', enctype='multipart/form-data')
+			fieldset(data-uk-margin)
+				.uk-form-file
+					button.uk-button.uk-button-primary.uk-button-small {{newPhoto}}
+					input(type='file', name= 'file', @change="extractInfo")
+			fieldset(v-if = "showDetail")
+				.uk-form-row
+					label
+						| Latitude
+						input(type＝'text', name= 'latitude', value = "{{latitudeValue}}")
+						select(v-model='latitudeRef')
+							option(v-for= 'option of latitudeRefs', :value='option', :selected='option == latitudeRef')
+								{{option}}
+				.uk-form-row
+					label
+						| Longitude
+						input(type＝'text', name= 'longitude', value = "{{longitudeValue}}")
+						select(v-model='longitudeRef')
+							option(v-for= 'option of longitudeRefs', :value='option', :selected='option == longitudeRef')
+								{{option}}
+				.uk-form-row
+					label
+						| Altitude
+						input(type＝'text', name= 'altitude', value = "{{altitudeValue}}")
+				.uk-form-row
+					label
+						| DateTime
+						input#ws(type＝'text', name= 'date', value= "{{capturedDate}}",data-uk-datepicker="{format:'YYYY:MM:DD'}")
 			input(type='submit', value='submit')
-
-		script
-			include ./../js/upload.js	
+		script(src= 'vue.js')
+		script(src= 'exif.js')
+		script(src= 'jquery-2.2.4.min.js')
+		script(src= 'uikit.min.js')
+		script(src= 'datepicker.min.js')
+		script(src= 'utility.js')
+		script(src= 'upload.js')
