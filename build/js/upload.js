@@ -3,6 +3,7 @@ new Vue({
   data: {
     newPhoto: 'new BK-photo',
     showDetail: false,
+    previewSrc: '',
     latitudeRefs: ['N', 'S'],
     longitudeRefs: ['E','W'],
     latitudeValue: "",
@@ -33,7 +34,9 @@ new Vue({
         this.altitudeRef = exif.GPSAltitudeRef
         this.dateTimeValue = exif.DateTime.match(/(((\d+):?)+\s+((\d+):?){2}):/)[1]
         this.showDetail= true
-      })
+
+        return FileReaderWithPromise(file)
+      }).then( (fileReader) => this.previewSrc = fileReader.result)
       event.target.value = null
     },
     showCalendar(event){
