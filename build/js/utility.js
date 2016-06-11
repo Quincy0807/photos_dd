@@ -15,3 +15,9 @@ const angleToInt = (degree, minute, second) => {
   return degreeNumerator + minuteNumerator/(60 * minuteDenominator) + secondNumerator/(3600 * secondDenominator)
 
 }
+
+const createUniqObject = () =>{
+  return {
+    uuid: new Date().getTime()
+  }
+}

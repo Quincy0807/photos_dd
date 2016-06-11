@@ -21,10 +21,15 @@ var home_controller = [{
   url: "/upload",
   async handler(ctx, next){
     const {files, fields} = await busboy(ctx.req)
-    for(let file of files){
-      file.pipe(fs.createWriteStream(path.join('images', test_time + new Date().getTime())))
-    }
-    ctx.body = 'succ'
+    // const filename = `${fields.dateTime.split(/[:\s]/).join('')}_${new Date().getTime()}`
+    // for(let file of files){
+    //   file.pipe(fs.createWriteStream(path.join('images', filename)))
+    // }
+    // ctx.mongo.db('photos_dd').collection('photo_details').insert(Object.assign(fields, {filename}))
+    // ctx.body = `${filename}`
+    ctx.body = `$`
+    console.log(fields)
+    console.log(files)
   }
 }]
 

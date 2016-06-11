@@ -10,32 +10,10 @@ html
 		form#form.uk-form(name='images', action='upload', method='post', enctype='multipart/form-data')
 			fieldset(data-uk-margin)
 				.uk-form-file
-					button.uk-button.uk-button-primary.uk-button-small {{newPhoto}}
-					input(type='file', name= 'file', @change="extractInfo")
-			fieldset(v-if = "showDetail")
-				.uk-form-row
-					img(:src = 'previewSrc', width='150', height='150')
-				.uk-form-row
-					label
-						| Latitude
-						input(type＝'text', name= 'latitude', v-model = "latitudeValue")
-						select(name='latitudeRef', v-model='latitudeRef')
-							option(v-for= 'option of latitudeRefs', :value='option', :selected='option == latitudeRef') {{option}}
-				.uk-form-row
-					label
-						| Longitude
-						input(type＝'text', name= 'longitude', v-model = "longitudeValue")
-						select(name='longitudeRef' v-model='longitudeRef')
-							option(v-for= 'option of longitudeRefs', :value='option', :selected='option == longitudeRef') {{option}}
-				.uk-form-row
-					label
-						| Altitude
-						input(type＝'text', name= 'altitude', v-model = "altitudeValue")
-				.uk-form-row
-					label
-						| DateTime
-						input.flatpickr(type＝'text', name= 'dateTime',v-model='dateTimeValue',@focus='showCalendar', data-enabletime='true', data-dateFormat='Y:m:d', data-timeFormat='H:i',  data-time_24hr='true', data-defaultDate="{{ valideDateFormateForJSDate }}")
-			input(type='submit', value='submit')
+					button.uk-button.uk-button-primary.uk-button-small(@click.stop.prevent= 'uploadNewImage') {{newPhoto}}
+					//- input.uk-hidden(type='file', name= 'file', @change="extractInfo")
+			<detail-photo v-for='item in detailData' :detail-data='item' :index-tag='$index' track-by='uuid'></detail-photo>		
+			input(type='submit', value='submit' )
 		script(src= 'public/vue.js')
 		script(src= 'public/exif.js')
 		script(src= 'public/jquery-2.2.4.min.js')
