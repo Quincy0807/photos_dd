@@ -17,7 +17,6 @@ for (let item of home_controller) {
 
 app.use(mount('/public',convert(serve('public/js'))))
 app.use(convert(serve('js')))
-app.use(mount('/public',convert(serve('public/css'))))
 app.use(convert(serve('images')))
 app.use(mount('/fonts' ,convert(serve('fonts'))))
 

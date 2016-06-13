@@ -2,21 +2,16 @@ doctype html
 html
 	head
 		title index
-		link(href='public/uikit.min.css', rel='stylesheet')
-		link(href='public/form-file.min.css', rel='stylesheet')
-		link(href='public/flatpickr.min.css', rel='stylesheet')
-		link(href='public/flatpickr.material_green.min.css', rel='stylesheet')
 	body
-		form#form.uk-form(name='images', action='upload', method='post', enctype='multipart/form-data')
-			fieldset(data-uk-margin)
-				.uk-form-file
-					button.uk-button.uk-button-primary.uk-button-small(@click.stop.prevent= 'uploadNewImage') {{newPhoto}}
-			<detail-photo v-for='item in detailData' :detail-data='item' :index-tag='$index' track-by='uuid'></detail-photo>		
-			input(type='submit', value='submit' )
-		script(src= 'public/vue.js')
+		.uk-container.uk-text-center
+			form.uk-margin-top#form.uk-form(name='images', action='upload', method='post', enctype='multipart/form-data')
+				fieldset(data-uk-margin)
+					.uk-form-file
+						button.uk-button.uk-button-primary.uk-button-small(@click.stop.prevent= 'uploadNewImage') {{newPhoto}}
+						input(type='submit', value='submit' )
+				.uk-grid
+					<detail-photo v-for='item in detailData' :detail-data='item' :index-tag='$index' track-by='uuid'></detail-photo>		
 		script(src= 'public/exif.js')
 		script(src= 'public/jquery-2.2.4.min.js')
 		script(src= 'public/uikit.min.js')
-		script(src= 'public/flatpickr.min.js')
-		script(src= 'utility.js')
 		script(src= 'upload.js')

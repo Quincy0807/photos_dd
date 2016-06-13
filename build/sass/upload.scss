@@ -1,0 +1,21 @@
+$uk-panel-top-bottom-margin: 20px;
+
+.no-show{
+  display: none;
+}
+
+.uk-container{
+  max-width: 100%;
+
+  .uk-panel{
+    margin: {
+      top: $uk-panel-top-bottom-margin;
+      bottom: $uk-panel-top-bottom-margin;
+    }
+    .uk-badge{
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

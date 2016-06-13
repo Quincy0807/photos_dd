@@ -1,7 +1,7 @@
 const gulp = require('gulp');
 const babel = require('gulp-babel')
 const fs = require('fs')
-
+const webpack = require('webpack-stream')
 
 
 // var jshint = require('gulp-jshint');
@@ -25,7 +25,7 @@ const fs = require('fs')
 gulp.task('translate', () =>{
   const package_json = JSON.parse(fs.readFileSync('package.json'))
   const babel_opts = package_json.babel
-  const src = ['controllers', 'js']
+  const src = ['controllers']
 
   for(let path of src){
     if(!fs.existsSync(path)){
@@ -42,5 +42,5 @@ gulp.task('translate', () =>{
 gulp.task('default', ['translate']);
 
 gulp.task('watch', () => {
-  gulp.watch('build/**/*.js',['translate'])
+  gulp.watch('build/controllers/*.js',['translate'])
 })

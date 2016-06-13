@@ -1,4 +1,4 @@
-const FileReaderWithPromise = (file, readAs = 'readAsDataURL', hookType= 'onload') => {
+const fileReaderWithPromise = (file, readAs = 'readAsDataURL', hookType= 'onload') => {
   return new Promise((resolve, reject) => {
     let fileReader = new FileReader();
     fileReader[hookType] = () => resolve(fileReader)
@@ -21,3 +21,5 @@ const createUniqObject = () =>{
     uuid: new Date().getTime()
   }
 }
+
+export {fileReaderWithPromise, angleToInt, createUniqObject}
