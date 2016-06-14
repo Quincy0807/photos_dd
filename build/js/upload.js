@@ -3,7 +3,7 @@ require('../../public/css/form-file.min.css')
 require('../sass/upload.scss')
 
 import Vue from 'vue'
-import {fileReaderWithPromise, angleToInt, createUniqObject} from './utility'
+import {fileReaderWithPromise, angleToInt} from './utility'
 
 Vue.component('detail-photo', require('../vue/detailed-photo.vue'))
 
@@ -12,21 +12,21 @@ new Vue({
   el: "#form",
   data: {
     newPhoto: 'new BK-photo',
-    detailData: [createUniqObject()],
+    detailData: [],
   },
   computed: {
   },
   methods: {
     uploadNewImage(event){
-      document.getElementById(`photo-${this.detailData.length - 1}-input-file`).click()
+      this.detailData.push({show: false})
     },
     submit(){
     },
   },
   events: {
-    extractPhotoInfo(fileToUpload){
+    extractPhotoInfo(fileToUpload, callback){
       let promise = fileReaderWithPromise(fileToUpload, 'readAsArrayBuffer', 'onloadend')
-      let temp = { uuid: this.detailData[this.detailData.length - 1].uuid }
+      let temp = {show: true}
       promise.then((fileReader) => {
         let exif = EXIF.readFromBinaryFile(fileReader.result)
         temp.latitudeValue = angleToInt(...exif.GPSLatitude)
@@ -39,12 +39,12 @@ new Vue({
         return fileReaderWithPromise(fileToUpload)
       }).then( (fileReader) => {
         temp.previewSrc = fileReader.result
-        this.detailData = [...this.detailData, temp, createUniqObject()]
+        this.detailData.splice(-1, 1, temp)
+        callback()
       })
     },
     removeItem(itemIndex){
       this.detailData.splice(itemIndex, 1)
-      this.detailDate = [...this.detailData]
     }
   },
 })

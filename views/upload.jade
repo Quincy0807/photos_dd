@@ -10,7 +10,7 @@ html
 						button.uk-button.uk-button-primary.uk-button-small(@click.stop.prevent= 'uploadNewImage') {{newPhoto}}
 						input(type='submit', value='submit' )
 				.uk-grid
-					<detail-photo v-for='item in detailData' :detail-data='item' :index-tag='$index' track-by='uuid'></detail-photo>		
+					<detail-photo v-for='item in detailData' :detail-data='item' :index-tag='$index' track-by='$index'></detail-photo>		
 		script(src= 'public/exif.js')
 		script(src= 'public/jquery-2.2.4.min.js')
 		script(src= 'public/uikit.min.js')
