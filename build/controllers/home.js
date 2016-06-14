@@ -31,7 +31,7 @@ var home_controller = [{
         index += 1
       }
     }
-    ctx.body = `ok`
+    ctx.body = `Upload Successfully!`
   }
 }]
 

@@ -1,5 +1,3 @@
-<style src='../sass/upload.scss'></style>
-
 <template lang="jade">
   .uk-width-medium-1-3(:class= "detailData.show ? '' : 'no-show' ")
     .uk-panel.uk-panel-box
@@ -10,28 +8,30 @@
           img(:src = 'detailData.previewSrc', width= '150', height= '150')
           input.uk-hidden(type='file', v-el:file-input, :name="'[' + this.componentDomain()+ '][photo]'", @change='photoExtraction')
         .uk-form-row
-          label Latitude
+          label
+            span.label-text Latitude:
             input(type='text', :name="'[' + this.componentDomain()+ '][latitude]'", v-model='detailData.latitudeValue')
             select(:name= "'['+ this.componentDomain() + '][latitudeRef]'", v-model='detailData.latitudeRef')
               option(v-for= 'option of latitudeRefs', :vaule= 'option', :selected= 'option == detailData.latitudeRef') {{option}}
         .uk-form-row
-          label Longitude
+          label
+            span.label-text Longitude:
             input(type='text', :name="'[' + this.componentDomain()+ '][longitude]'", v-model='detailData.longitudeValue')
             select(:name= "'['+ this.componentDomain() + '][longitudeRef]'", v-model='detailData.longitudeRef')
               option(v-for= 'option of longitudeRefs', :vaule= 'option', :selected= 'option == detailData.longitudeRef') {{option}}
         .uk-form-row
-          label Altitude
+          label
+            span.label-text Altitude:
             input(type='text', :name= "'[' + this.componentDomain()+ '][altitude]'", v-model= "detailData.altitudeValue")
         .uk-form-row
-          label DateTime
-            input(:id="new Date().getTime()", v-el:date-time, type='text', :name="'['+ this.componentDomain()+'][dateTime]'", v-model='detailData.dateTimeValue' data-enabletime='true', data-dateFormat='Y:m:d', data-timeFormat='H:i' data-time_24hr='true' data-defaultDate="{{ valideDateFormateForJSDate }}")
+          label
+            span.label-text DateTime:
+            input(:id='new Date().getTime()', v-el:date-time, type='text', :name="'['+ this.componentDomain()+'][dateTime]'", v-model='detailData.dateTimeValue' data-enabletime='true', data-dateFormat='Y:m:d', data-timeFormat='H:i' data-time_24hr='true' data-defaultDate="{{ valideDateFormateForJSDate }}")
 </template>
 
 <script>
-const flatpickr = require('flatpickr')
-require('../../public/css/flatpickr.min.css')
 require('../../public/css/flatpickr.material_green.min.css')
-
+const flatpickr = require('flatpickr')
 
 export default {
   data(){

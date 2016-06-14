@@ -18,7 +18,6 @@ const angleToInt = (degree, minute, second) => {
 
 const createUniqObject = () =>{
   return {
-    // uuid: new Date().getTime(),
     show: false
   }
 }

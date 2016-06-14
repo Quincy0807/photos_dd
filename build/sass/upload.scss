@@ -17,5 +17,16 @@ $uk-panel-top-bottom-margin: 20px;
         cursor: pointer;
       }
     }
+    label{
+      width: 100%;
+      display: inline-block;
+      text-align: left;
+      .label-text{
+        display: inline-block;
+        width: 20%;
+        padding-left: 10%;
+      }
+    }
+
   }
 }

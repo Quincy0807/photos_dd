@@ -2,15 +2,8 @@ doctype html
 html
 	head
 		title index
-	body
-		.uk-container.uk-text-center
-			form.uk-margin-top#form.uk-form(name='images', action='upload', method='post', enctype='multipart/form-data')
-				fieldset(data-uk-margin)
-					.uk-form-file
-						button.uk-button.uk-button-primary.uk-button-small(@click.stop.prevent= 'uploadNewImage') {{newPhoto}}
-						input(type='submit', value='submit' )
-				.uk-grid
-					<detail-photo v-for='item in detailData' :detail-data='item' :index-tag='$index' track-by='$index'></detail-photo>		
+	body#body
+		<photo-submit></photo-submit>
 		script(src= 'public/exif.js')
 		script(src= 'public/jquery-2.2.4.min.js')
 		script(src= 'public/uikit.min.js')
