@@ -1,32 +1,47 @@
 $uk-panel-top-bottom-margin: 20px;
-
-.no-show{
-  display: none;
+.no-show {
+    display: none;
 }
-
-.uk-container{
-  max-width: 100%;
-
-  .uk-panel{
-    margin: {
-      top: $uk-panel-top-bottom-margin;
-      bottom: $uk-panel-top-bottom-margin;
+html {
+  height: 100%;
+}
+#body {
+  background: lighten(grey, 30%);
+  width: 100%;
+  min-height: 100%;
+    .uk-container {
+        max-width: 100%;
+        min-height: 100vh;
+        border: grey solid 5px;
+        form{
+          height: 100vh;
+        }
+        .select-button{
+          &:hover{
+            cursor: pointer;
+            text-decoration: underline;
+          }
+        }
+        .uk-panel {
+            margin: {
+                top: $uk-panel-top-bottom-margin;
+                bottom: $uk-panel-top-bottom-margin;
+            }
+            .uk-badge {
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+            label {
+                width: 100%;
+                display: inline-block;
+                text-align: left;
+                .label-text {
+                    display: inline-block;
+                    width: 20%;
+                    padding-left: 10%;
+                }
+            }
+        }
     }
-    .uk-badge{
-      &:hover {
-        cursor: pointer;
-      }
-    }
-    label{
-      width: 100%;
-      display: inline-block;
-      text-align: left;
-      .label-text{
-        display: inline-block;
-        width: 20%;
-        padding-left: 10%;
-      }
-    }
-
-  }
 }

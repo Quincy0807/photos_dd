@@ -41,7 +41,12 @@ export default {
     }
   },
   ready(){
-    this.$els.fileInput.click()
+    if(this.detailData.file){
+      this.$els.fileInput.files[0]=this.detailData.file
+      this.$els.fileInput.dispatchEvent(new Event('change'))
+    }else{
+      this.$els.fileInput.click()
+    }
   },
   computed: {
     valideDateFormateForJSDate(){
@@ -62,7 +67,7 @@ export default {
       this.$dispatch('removeItem', this.indexTag)
     },
     photoExtraction(){
-      this.$dispatch('extractPhotoInfo', this.$els.fileInput.files[0], ()=>flatpickr(`#${this.$els.dateTime.id}`))
+      this.$dispatch('extractPhotoInfo', this.$els.fileInput.files[0], this.indexTag, ()=>flatpickr(`#${this.$els.dateTime.id}`))
     },
   }
 }
