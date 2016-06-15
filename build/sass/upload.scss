@@ -3,24 +3,24 @@ $uk-panel-top-bottom-margin: 20px;
     display: none;
 }
 html {
-  height: 100%;
+    min-height: 100%;
 }
 #body {
-  background: lighten(grey, 30%);
-  width: 100%;
-  min-height: 100%;
+    background: lighten(grey, 30%);
+    width: 100%;
+    min-height: 100%;
     .uk-container {
         max-width: 100%;
         min-height: 100vh;
         border: grey solid 5px;
-        form{
-          height: 100vh;
+        form {
+            height: 100vh;
         }
-        .select-button{
-          &:hover{
-            cursor: pointer;
-            text-decoration: underline;
-          }
+        .select-button {
+            &:hover {
+                cursor: pointer;
+                text-decoration: underline;
+            }
         }
         .uk-panel {
             margin: {

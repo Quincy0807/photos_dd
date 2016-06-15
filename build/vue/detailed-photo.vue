@@ -6,7 +6,6 @@
       fieldset
         .uk-form-row
           img(:src = 'detailData.previewSrc', width= '150', height= '150')
-          input.uk-hidden(type='file', v-el:file-input, :name="'[' + this.componentDomain()+ '][photo]'", @change='photoExtraction')
         .uk-form-row
           label
             span.label-text Latitude:
@@ -41,12 +40,7 @@ export default {
     }
   },
   ready(){
-    if(this.detailData.file){
-      this.$els.fileInput.files[0]=this.detailData.file
-      this.$els.fileInput.dispatchEvent(new Event('change'))
-    }else{
-      this.$els.fileInput.click()
-    }
+    flatpickr(`#${this.$els.dateTime.id}`)
   },
   computed: {
     valideDateFormateForJSDate(){
@@ -65,9 +59,6 @@ export default {
     },
     removeComponent(){
       this.$dispatch('removeItem', this.indexTag)
-    },
-    photoExtraction(){
-      this.$dispatch('extractPhotoInfo', this.$els.fileInput.files[0], this.indexTag, ()=>flatpickr(`#${this.$els.dateTime.id}`))
     },
   }
 }
