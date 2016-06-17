@@ -55,10 +55,10 @@
           processData: false,
           contentType: false,
           success: (response) => {
-            // this.overlay = false
-            // this.detailData = []
-            // this.files = []
-            // window.alert(response)
+            this.overlay = false
+            this.detailData = []
+            this.files = []
+            window.alert(response)
           }
         })
       },

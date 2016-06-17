@@ -4,7 +4,7 @@
   "description": "Photo Server",
   "main": "app.js",
   "scripts": {
-    "build": "gulp && babel build/server.js -o server.js",
+    "build": "webpack && gulp && babel build/server.js -o server.js",
     "start": "node --harmony server.js"
   },
   "babel": {

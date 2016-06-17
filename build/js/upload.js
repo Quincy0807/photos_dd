@@ -1,6 +1,3 @@
-
-// require('../../public/css/form-file.min.css')
-
 import Vue from 'vue'
 new Vue({
     el: '#body',
