@@ -5,7 +5,7 @@
       h3.uk-panel-title {{detailData.dateTimeValue}}
       fieldset
         .uk-form-row
-          img(:src = 'detailData.previewSrc', width= '150', height= '150')
+          img.img-preview(:src = 'detailData.previewSrc', width= '150', height= '150')
         .uk-form-row
           label
             span.label-text Latitude:

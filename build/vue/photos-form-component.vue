@@ -48,11 +48,18 @@
         for(const file of this.files){
           dataToSubmit.append(file.name, file)
         }
-        fetch('/upload',{method: 'post', body: dataToSubmit}).then(response=>response.text()).then(response=>{
-          this.overlay = false
-          this.detailData = []
-          this.files = []
-          window.alert(response)
+        $.ajax({
+          type: 'post',
+          url: '/upload',
+          data: dataToSubmit,
+          processData: false,
+          contentType: false,
+          success: (response) => {
+            // this.overlay = false
+            // this.detailData = []
+            // this.files = []
+            // window.alert(response)
+          }
         })
       },
       extractPhotoInfo(fileToUpload, index){
