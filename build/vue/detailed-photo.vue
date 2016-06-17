@@ -1,6 +1,6 @@
 <template lang="jade">
   .uk-width-medium-1-3(:class= "detailData.show ? '' : 'no-show' ")
-    .uk-panel.uk-panel-box
+    .uk-panel.uk-panel-box.uk-panel-header
       span.uk-panel-badge.uk-badge.uk-badge-danger(@click='removeComponent') x
       h3.uk-panel-title {{detailData.dateTimeValue}}
       fieldset

@@ -1,25 +1,25 @@
 <style lang='sass' src='../sass/upload.scss'></style>
 
 <template lang="jade">
-  .uk-container.uk-text-center
+  .uk-container.uk-text-center.uk-overlay
     form.uk-hidden(v-el:hidden-form)
       input.uk-hidden(type='file', multiple='multiple', v-el:hidden-input, @change='selectMultipleFiles')
     form.uk-margin-top.uk-form#form(v-el:form, name='images', action='upload', method='post', enctype='multipart/form-data', @drop.stop.prevent='dndFiles')
-      .uk-grid(data-uk-margin)
+      .uk-grid.uk-margin-small
         <detail-photo v-for='item in detailData' :detail-data='item' :index-tag='$index' track-by='$index'></detail-photo>
-      fieldset(data-uk-margin)
-        .uk-form-file
-          span
-            span.select-button(@click.stop.prevent= 'uploadFiles')
-              b select files
-            | &nbsp;or&nbsp;
-            b drag files
-            template(v-if='detailData.length > 0')
-              | &nbsp;or&nbsp;
-              input(type='submit', value='submit' )
+      template(v-if='detailData.length == 0')
+        .initial-hint-container.uk-vertical-align
+          .uk-vertical-align-middle
+            partial(name='select_or_upload')
+      template(v-else)
+        partial(name='select_or_upload')
+    .uk-overlay-panel.uk-overlay-background.uk-vertical-align.uk-animation-slide-bottom(:class="overlay ? '' : 'uk-hidden'")
+      .uk-vertical-align-middle
+        i.uk-icon-spinner.uk-icon-spin.uk-icon-large
 </template>
 
 <script>
+  require('../../public/css/uikit.min.css')
   import {fileReaderWithPromise, angleToInt} from '../js/utility'
 
   export default {
@@ -28,6 +28,7 @@
         newPhoto: 'new BK-photo',
         detailData: [],
         files: [],
+        overlay: false,
       }
     },
     computed: {
@@ -42,6 +43,17 @@
         this.$els.hiddenForm.reset()
       },
       submit(){
+        this.overlay = true
+        const dataToSubmit = new FormData(this.$els.form)
+        for(const file of this.files){
+          dataToSubmit.append(file.name, file)
+        }
+        fetch('/upload',{method: 'post', body: dataToSubmit}).then(response=>response.text()).then(response=>{
+          this.overlay = false
+          this.detailData = []
+          this.files = []
+          window.alert(response)
+        })
       },
       extractPhotoInfo(fileToUpload, index){
         let promise = fileReaderWithPromise(fileToUpload, 'readAsArrayBuffer', 'onloadend')
@@ -91,6 +103,21 @@
     },
     components: {
       detailPhoto: require('./detailed-photo.vue'),
+    },
+    partials:{
+      select_or_upload: `
+      <fieldset class="uk-margin-top uk-margin-bottom">
+        <span>
+          <span class='select-button' @click.stop.prevent='uploadFiles'>
+            <b>select files</b>
+          </span>
+          &nbsp; or &nbsp; <b>drag files</b>
+          <template v-if='detailData.length > 0'>
+            &nbsp; or &nbsp;
+            <input type='submit' value='submit' @click.stop.prevent='submit'/>
+          </template>
+        <span>
+      </fieldset>`
     }
   }
 </script>

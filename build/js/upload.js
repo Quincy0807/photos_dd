@@ -1,5 +1,5 @@
-require('../../public/css/uikit.min.css')
-require('../../public/css/form-file.min.css')
+
+// require('../../public/css/form-file.min.css')
 
 import Vue from 'vue'
 new Vue({
@@ -7,5 +7,4 @@ new Vue({
     components: {
         photoSubmit: require('../vue/photos-form-component.vue')
     }
-
 })

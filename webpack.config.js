@@ -36,7 +36,7 @@ let config = {
       },{
         test: /\.jade$/,
         loader: 'jade'
-      }
+      },
     ]
   },
   babel: babel_opts,

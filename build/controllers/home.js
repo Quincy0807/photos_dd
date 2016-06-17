@@ -26,15 +26,13 @@ var home_controller = [{
         } = await busboy(ctx.req)
         let index = 0
         for (let fieldKey in fields['']) {
-            if (fieldKey != 'photo-0') {
-                const fieldValue = fields[''][fieldKey]
-                const filename = `${fieldValue.dateTime.split(/[:\s]/).join('')}_${new Date().getTime()}`
-                files[index].pipe(fs.createWriteStream(path.join('images', filename)))
-                ctx.mongo.db('photos_dd').collection('photo_details').insert(Object.assign(fieldValue, {
-                    filename
-                }))
-                index += 1
-            }
+            const fieldValue = fields[''][fieldKey]
+            const filename = `${fieldValue.dateTime.split(/[:\s]/).join('')}_${new Date().getTime()}`
+            files[index].pipe(fs.createWriteStream(path.join('images', filename)))
+            ctx.mongo.db('photos_dd').collection('photo_details').insert(Object.assign(fieldValue, {
+                filename
+            }))
+            index += 1
         }
         ctx.body = `Upload Successfully!`
     }

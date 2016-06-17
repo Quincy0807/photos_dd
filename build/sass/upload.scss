@@ -11,10 +11,15 @@ html {
     min-height: 100%;
     .uk-container {
         max-width: 100%;
+        width: 100%;
         min-height: 100vh;
         border: grey solid 5px;
+
+        .initial-hint-container{
+          height: 100vh;
+        }
         form {
-            height: 100vh;
+            min-height: 100vh;
         }
         .select-button {
             &:hover {
