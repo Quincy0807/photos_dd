@@ -13,7 +13,8 @@
             partial(name='select_or_upload')
       template(v-else)
         partial(name='select_or_upload')
-    .uk-overlay-panel.uk-overlay-background.uk-vertical-align.uk-animation-slide-bottom(:class="overlay ? '' : 'uk-hidden'")
+  .uk-overlay-panel.uk-overlay-background.uk-animation-slide-bottom(:class="overlay ? '' : 'uk-hidden'")
+    .uk-vertical-align
       .uk-vertical-align-middle
         i.uk-icon-spinner.uk-icon-spin.uk-icon-large
 </template>
