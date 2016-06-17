@@ -9,15 +9,23 @@ html {
     background: lighten(grey, 30%);
     width: 100%;
     min-height: 100%;
+    .uk-overlay-panel{
+      z-index: 10;
+      position: fixed;
+      
+      .uk-vertical-align{
+        text-align: center;
+        width: 100vw;
+        height: 100vh;
+      }
+    }
     .uk-container {
         max-width: 100%;
         width: 100%;
         min-height: 100vh;
         border: grey solid 5px;
-        
-        .uk-overlay-panel{
-          z-index: 2
-        }
+
+
         .initial-hint-container{
           height: 100vh;
         }

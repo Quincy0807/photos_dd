@@ -13,7 +13,8 @@
             partial(name='select_or_upload')
       template(v-else)
         partial(name='select_or_upload')
-    .uk-overlay-panel.uk-overlay-background.uk-vertical-align.uk-animation-slide-bottom(:class="overlay ? '' : 'uk-hidden'")
+  .uk-overlay-panel.uk-overlay-background.uk-animation-slide-bottom(:class="overlay ? '' : 'uk-hidden'")
+    .uk-vertical-align
       .uk-vertical-align-middle
         i.uk-icon-spinner.uk-icon-spin.uk-icon-large
 </template>
@@ -48,19 +49,19 @@
         for(const file of this.files){
           dataToSubmit.append(file.name, file)
         }
-        $.ajax({
-          type: 'post',
-          url: '/upload',
-          data: dataToSubmit,
-          processData: false,
-          contentType: false,
-          success: (response) => {
-            this.overlay = false
-            this.detailData = []
-            this.files = []
-            window.alert(response)
-          }
-        })
+        // $.ajax({
+        //   type: 'post',
+        //   url: '/upload',
+        //   data: dataToSubmit,
+        //   processData: false,
+        //   contentType: false,
+        //   success: (response) => {
+        //     this.overlay = false
+        //     this.detailData = []
+        //     this.files = []
+        //     window.alert(response)
+        //   }
+        // })
       },
       extractPhotoInfo(fileToUpload, index){
         let promise = fileReaderWithPromise(fileToUpload, 'readAsArrayBuffer', 'onloadend')
