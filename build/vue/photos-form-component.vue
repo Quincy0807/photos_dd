@@ -49,19 +49,19 @@
         for(const file of this.files){
           dataToSubmit.append(file.name, file)
         }
-        $.ajax({
-          type: 'post',
-          url: '/upload',
-          data: dataToSubmit,
-          processData: false,
-          contentType: false,
-          success: (response) => {
-            this.overlay = false
-            this.detailData = []
-            this.files = []
-            window.alert(response)
-          }
-        })
+        // $.ajax({
+        //   type: 'post',
+        //   url: '/upload',
+        //   data: dataToSubmit,
+        //   processData: false,
+        //   contentType: false,
+        //   success: (response) => {
+        //     this.overlay = false
+        //     this.detailData = []
+        //     this.files = []
+        //     window.alert(response)
+        //   }
+        // })
       },
       extractPhotoInfo(fileToUpload, index){
         let promise = fileReaderWithPromise(fileToUpload, 'readAsArrayBuffer', 'onloadend')
