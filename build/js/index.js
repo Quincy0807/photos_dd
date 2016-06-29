@@ -1,3 +1,7 @@
+import Vue from 'vue'
+
+require('../../public/css/uikit.min.css')
+require('../sass/index.scss')
 new Vue({
   el: "#buttons",
   data: {

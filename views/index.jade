@@ -2,11 +2,11 @@ doctype html
 html
 	head
 		title index
-		link(href='uikit.min.css', rel='stylesheet')
-	body
-		#buttons
-			a.uk-button.uk-button-primary {{allPhotos}}
-			a.uk-button.uk-button-danger {{withMap}}
-		script(src='vue.js')
-		script
-			include ./../js/index.js
+	body#buttons
+		.uk-flex.uk-flex-center.uk-flex-middle
+			.uk-container
+				.uk-width-1-1.uk-text-center
+					a.uk-button.uk-button-primary(href='photos') {{allPhotos}}
+				.uk-width-1-1.uk-margin-top.uk-text-center
+					.uk-button.uk-button-danger {{withMap}}
+	script(src='index.js')

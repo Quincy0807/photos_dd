@@ -2,8 +2,6 @@ import busboy from 'async-busboy'
 const fs = require('fs')
 const path = require('path')
 
-let test_time = '2016-04-22'
-
 var home_controller = [{
     method: "get",
     url: "/",

@@ -2,10 +2,12 @@ const path = require('path')
 const fs = require('fs')
 const package_json = JSON.parse(fs.readFileSync('package.json'))
 const babel_opts = package_json.babel
+const autoprefixer = require('autoprefixer')
 
 let config = {
   entry: {
-    upload: path.resolve(__dirname,'build/js/upload.js')
+    upload: path.resolve(__dirname,'build/js/upload.js'),
+    index: path.resolve(__dirname,'build/js/index.js'),
   },
   output:{
     path: 'js',
@@ -23,7 +25,7 @@ let config = {
         exclude: /node_mudules/
       },{
         test: /\.scss$/,
-        loaders: ['style', 'css', 'sass']
+        loaders: ['style', 'css', 'postcss', 'sass']
       },{
         test: /\.css$/,
         loaders: ['style', 'css']
@@ -38,6 +40,9 @@ let config = {
         loader: 'jade'
       },
     ]
+  },
+  postcss: function(){
+    return [autoprefixer]
   },
   babel: babel_opts,
 }

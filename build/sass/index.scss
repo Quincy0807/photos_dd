@@ -1,0 +1,12 @@
+.uk-flex {
+    background: url('../../public/images/background_castle.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    .uk-container {
+      width: 100%;
+        .uk-button {
+            width: 180px;
+        }
+    }
+}
