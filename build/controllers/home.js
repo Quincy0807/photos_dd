@@ -1,6 +1,7 @@
 import busboy from 'async-busboy'
 const fs = require('fs')
 const path = require('path')
+const config = require('config')
 
 var home_controller = [{
     method: "get",
@@ -27,7 +28,7 @@ var home_controller = [{
             const fieldValue = fields[''][fieldKey]
             const filename = `${fieldValue.dateTime.split(/[:\s]/).join('')}_${new Date().getTime()}`
             files[index].pipe(fs.createWriteStream(path.join('images', filename)))
-            ctx.mongo.db('photos_dd').collection('photo_details').insert(Object.assign(fieldValue, {
+            ctx.mongo.db('photos_dd').collection(config.get("collection")).insert(Object.assign(fieldValue, {
                 filename
             }))
             index += 1

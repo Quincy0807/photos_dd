@@ -7,6 +7,7 @@ const autoprefixer = require('autoprefixer')
 let config = {
   entry: {
     upload: path.resolve(__dirname,'build/js/upload.js'),
+    photos: path.resolve(__dirname,'build/js/photos.js'),
     index: path.resolve(__dirname,'build/js/index.js'),
   },
   output:{

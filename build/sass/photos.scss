@@ -1,0 +1,23 @@
+#loading-container{
+}
+
+.uk-panel{
+  img{
+    height: 150px;
+    width: 150px;
+  }
+  .uk-width-1-1{
+    text-align: center;
+  }
+}
+
+#alert-wrapper{
+  position: fixed;
+  height: 40px;
+  width: 240px;
+  top: calc(50% - 20px);
+  left: calc(50% - 120px);
+  animation-duration: 3s;
+  opacity: 0.7;
+
+}
